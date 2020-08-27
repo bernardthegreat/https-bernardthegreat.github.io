@@ -59,13 +59,16 @@ window.navigator.geolocation.getCurrentPosition(function(pos) {
   const uerm1 = distance(pos.coords.longitude, pos.coords.latitude, uerm1_lat1, uerm1_long1);
   const uerm2 = distance(pos.coords.longitude, pos.coords.latitude, uerm2_lat1, uerm2_long2)
   const sum = kapiligan1 + kapiligan2 + uerm1 + uerm2;
+  const currentLocation = pos.coords.longitude + ", " + pos.coords.latitude;
   console.log(kapiligan1 + kapiligan2 + uerm1 + uerm2);
   
   x.innerHTML = "Distance to Kapiligan 1:"+" "+distance(pos.coords.longitude, pos.coords.latitude, kapiligan1_lat1, kapiligan1_long1) + 
   "<br> Distance to Kapiligan 2:"+" "+distance(pos.coords.longitude, pos.coords.latitude, kapiligan2_lat2, kapiligan2_long2) +
   "<br> Distance to UERM 1:"+" "+distance(pos.coords.longitude, pos.coords.latitude, uerm1_lat1, uerm1_long1) +
   "<br> Distance to UERM 2:"+" "+distance(pos.coords.longitude, pos.coords.latitude, uerm2_lat1, uerm2_long2) +
-  "<br> Distance Sum:"+" "+sum;
+  "<br> Distance Sum:"+" "+sum +
+  "<br> Current Location:"+" "+currentLocation;
+  ;
 });
 </script>
 
