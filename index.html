@@ -23,7 +23,6 @@ function distance(lon1, lat1, lon2, lat2) {
 
 if (typeof(Number.prototype.toRad) === "undefined") {
   Number.prototype.toRad = function() {
-	console.log(this * Math.PI / 180);
     return this * Math.PI / 180;
   }
 }
@@ -44,13 +43,14 @@ window.navigator.geolocation.getCurrentPosition(function(pos) {
   const uerm2 = distance(pos.coords.longitude, pos.coords.latitude, uerm2_long2, uerm2_lat2)
   const sum = kapiligan1 + kapiligan2 + uerm1 + uerm2;
   const currentLocation = pos.coords.longitude + ", " + pos.coords.latitude;
+  
   console.log(kapiligan1, kapiligan2, uerm1, uerm2);
   console.log(kapiligan1 + kapiligan2 + uerm1 + uerm2);
   
-  x.innerHTML = "Distance to Kapiligan 1:"+" "+distance(pos.coords.longitude, pos.coords.latitude, kapiligan1_lat1, kapiligan1_long1) + 
-  "<br> Distance to Kapiligan 2:"+" "+distance(pos.coords.longitude, pos.coords.latitude, kapiligan2_lat2, kapiligan2_long2) +
-  "<br> Distance to UERM 1:"+" "+distance(pos.coords.longitude, pos.coords.latitude, uerm1_lat1, uerm1_long1) +
-  "<br> Distance to UERM 2:"+" "+distance(pos.coords.longitude, pos.coords.latitude, uerm2_lat2, uerm2_long2) +
+  x.innerHTML = "Distance to Kapiligan 1:"+" "+distance(pos.coords.longitude, pos.coords.latitude, kapiligan1_long1, kapiligan1_lat1) + 
+  "<br> Distance to Kapiligan 2:"+" "+distance(pos.coords.longitude, pos.coords.latitude, kapiligan2_long2, kapiligan2_lat2) +
+  "<br> Distance to UERM 1:"+" "+distance(pos.coords.longitude, pos.coords.latitude, uerm1_long1, uerm1_lat1) +
+  "<br> Distance to UERM 2:"+" "+distance(pos.coords.longitude, pos.coords.latitude, uerm2_long2, uerm2_lat2) +
   "<br> Distance Sum:"+" "+sum +
   "<br> Current Location:"+" "+currentLocation;
   ;
