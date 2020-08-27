@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("demo");
+
+function distance(lon1, lat1, lon2, lat2) {
+  var R = 6371; // Radius of the earth in km
+  var dLat = (lat2-lat1).toRad();  // Javascript functions in radians
+  var dLon = (lon2-lon1).toRad(); 
+  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+          Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
+          Math.sin(dLon/2) * Math.sin(dLon/2); 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c; // Distance in km
+  return d;
+}
+
+/** Converts numeric degrees to radians */
+
+if (typeof(Number.prototype.toRad) === "undefined") {
+  Number.prototype.toRad = function() {
+	console.log(this);
+	console.log(this * Math.PI / 180);
+    return this * Math.PI / 180;
+  }
+}
+
+window.navigator.geolocation.getCurrentPosition(function(pos) {
+  console.log(pos); 
+  const kapiligan1_lat1 = 121.019337;
+  const kapiligan1_long1 =  14.607422;
+  const kapiligan2_lat2 = 121.020161;
+  const kapiligan2_long2 =  14.608234;
+  const uerm1_lat1 = 121.020935;
+  const uerm1_long1 = 14.606245;
+  const uerm2_lat1 = 121.021477;
+  const uerm2_long2 = 14.606939;
+  
+  console.log(
+    "Distance to Kapiligan 1:"+" "+distance(pos.coords.longitude, pos.coords.latitude, kapiligan1_lat1, kapiligan1_long1)
+  ); 
+  console.log(
+    "Distance to Kapiligan 2:"+" "+distance(pos.coords.longitude, pos.coords.latitude, kapiligan2_lat2, kapiligan2_long2)
+  );
+  console.log(
+    "Distance to UERM 1:"+" "+distance(pos.coords.longitude, pos.coords.latitude, uerm1_lat1, uerm1_long1)
+  );
+  console.log(
+    "Distance to UERM 2:"+" "+distance(pos.coords.longitude, pos.coords.latitude, uerm2_lat1, uerm2_long2)
+  ); 
+  
+  const kapiligan1 = distance(pos.coords.longitude, pos.coords.latitude, kapiligan1_lat1, kapiligan1_long1);
+  const kapiligan2 = distance(pos.coords.longitude, pos.coords.latitude, kapiligan2_lat2, kapiligan2_long2);
+  const uerm1 = distance(pos.coords.longitude, pos.coords.latitude, uerm1_lat1, uerm1_long1);
+  const uerm2 = distance(pos.coords.longitude, pos.coords.latitude, uerm2_lat1, uerm2_long2)
+  const sum = kapiligan1 + kapiligan2 + uerm1 + uerm2;
+  const currentLocation = pos.coords.longitude + ", " + pos.coords.latitude;
+  console.log(kapiligan1 + kapiligan2 + uerm1 + uerm2);
+  
+  x.innerHTML = "Distance to Kapiligan 1:"+" "+distance(pos.coords.longitude, pos.coords.latitude, kapiligan1_lat1, kapiligan1_long1) + 
+  "<br> Distance to Kapiligan 2:"+" "+distance(pos.coords.longitude, pos.coords.latitude, kapiligan2_lat2, kapiligan2_long2) +
+  "<br> Distance to UERM 1:"+" "+distance(pos.coords.longitude, pos.coords.latitude, uerm1_lat1, uerm1_long1) +
+  "<br> Distance to UERM 2:"+" "+distance(pos.coords.longitude, pos.coords.latitude, uerm2_lat1, uerm2_long2) +
+  "<br> Distance Sum:"+" "+sum +
+  "<br> Current Location:"+" "+currentLocation;
+  ;
+});
+</script>
+
+</body>
+</html>
