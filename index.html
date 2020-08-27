@@ -28,29 +28,32 @@ if (typeof(Number.prototype.toRad) === "undefined") {
 }
 
 window.navigator.geolocation.getCurrentPosition(function(pos) {
-  const kapiligan1_lat1 = 121.019337;
-  const kapiligan1_long1 =  14.607422;
-  const kapiligan2_lat2 = 121.020161;
-  const kapiligan2_long2 =  14.608234;
-  const uerm1_lat1 = 121.020935;
-  const uerm1_long1 = 14.606245;
-  const uerm2_lat2 = 121.021477;
-  const uerm2_long2 = 14.606939;
+  const kapiligan1_lat1 = 14.607422;
+  const kapiligan1_long1 = 121.019337;
+  const kapiligan2_lat2 = 14.608234;
+  const kapiligan2_long2 = 121.020161;
+  const uerm1_lat1 = 14.606245;
+  const uerm1_long1 = 121.020935;
+  const uerm2_lat2 = 14.606939;
+  const uerm2_long2 = 121.021477;
+  const current_coordinates_lat = pos.coords.latitude;
+  const current_coordinates_long = pos.coords.longitude;
   
-  const kapiligan1 = distance(pos.coords.longitude, pos.coords.latitude, kapiligan1_long1, kapiligan1_lat1);
-  const kapiligan2 = distance(pos.coords.longitude, pos.coords.latitude, kapiligan2_long2, kapiligan2_lat2);
-  const uerm1 = distance(pos.coords.longitude, pos.coords.latitude, uerm1_long1, uerm1_lat1);
-  const uerm2 = distance(pos.coords.longitude, pos.coords.latitude, uerm2_long2, uerm2_lat2)
+  
+  const kapiligan1 = distance(current_coordinates_long, current_coordinates_lat, kapiligan1_long1, kapiligan1_lat1);
+  const kapiligan2 = distance(current_coordinates_long, current_coordinates_lat, kapiligan2_long2, kapiligan2_lat2);
+  const uerm1 = distance(current_coordinates_long, current_coordinates_lat, uerm1_long1, uerm1_lat1);
+  const uerm2 = distance(current_coordinates_long, current_coordinates_lat, uerm2_long2, uerm2_lat2)
   const sum = kapiligan1 + kapiligan2 + uerm1 + uerm2;
   const currentLocation = pos.coords.longitude + ", " + pos.coords.latitude;
   
   console.log(kapiligan1, kapiligan2, uerm1, uerm2);
   console.log(kapiligan1 + kapiligan2 + uerm1 + uerm2);
   
-  x.innerHTML = "Distance to Kapiligan 1:"+" "+distance(pos.coords.longitude, pos.coords.latitude, kapiligan1_long1, kapiligan1_lat1) + 
-  "<br> Distance to Kapiligan 2:"+" "+distance(pos.coords.longitude, pos.coords.latitude, kapiligan2_long2, kapiligan2_lat2) +
-  "<br> Distance to UERM 1:"+" "+distance(pos.coords.longitude, pos.coords.latitude, uerm1_long1, uerm1_lat1) +
-  "<br> Distance to UERM 2:"+" "+distance(pos.coords.longitude, pos.coords.latitude, uerm2_long2, uerm2_lat2) +
+  x.innerHTML = "Distance to Kapiligan 1:"+" "+distance(current_coordinates_long, current_coordinates_lat, kapiligan1_long1, kapiligan1_lat1) + 
+  "<br> Distance to Kapiligan 2:"+" "+distance(current_coordinates_long, current_coordinates_lat, kapiligan2_long2, kapiligan2_lat2) +
+  "<br> Distance to UERM 1:"+" "+distance(current_coordinates_long, current_coordinates_lat, uerm1_long1, uerm1_lat1) +
+  "<br> Distance to UERM 2:"+" "+distance(current_coordinates_long, current_coordinates_lat, uerm2_long2, uerm2_lat2) +
   "<br> Distance Sum:"+" "+sum +
   "<br> Current Location:"+" "+currentLocation;
   ;
